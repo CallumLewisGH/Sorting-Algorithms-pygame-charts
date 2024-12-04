@@ -1,3 +1,4 @@
+import random
 class Sorts:
     def BubbleSort(self, data):
         states = []
@@ -112,4 +113,20 @@ class Sorts:
                     states.append([arr.copy(), k])
 
         merge_sort(data)
+        return states
+
+    def BogoSort(self, data):
+        states = []
+
+        def is_sorted(arr):
+            return all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))
+
+        def bogo_sort():
+            while not is_sorted(data):
+                random.shuffle(data)
+                states.append([data.copy(), random.randint(0,127)])
+                if len(states) > 500:
+                    break
+
+        bogo_sort()
         return states
