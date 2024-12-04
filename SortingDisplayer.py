@@ -24,29 +24,24 @@ WIDTH, HEIGHT = 800, 600
 BAR_COUNT = len(scrambledList)
 BAR_WIDTH = WIDTH // BAR_COUNT
 
-# Colors
 BACKGROUND_COLOR = (30, 30, 30)
 BAR_COLOR = (0, 204, 255)
 TEXT_COLOR = (255, 255, 255)
 
-# Create screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Bar Chart Visualization")
 
-# Font setup for displaying the count
 font = pygame.font.SysFont('Arial', 24)
 
 def draw_bars(values):
     screen.fill(BACKGROUND_COLOR)
 
-    # Draw the bars
     for i, value in enumerate(values):
         value = value * 4
         x = i * BAR_WIDTH
         y = HEIGHT - value
         pygame.draw.rect(screen, BAR_COLOR, (x + (WIDTH/100 * 2), y, BAR_WIDTH, value))
 
-    # Render the count as text
     count_text = font.render(f'Operations: {count}', True, TEXT_COLOR)
     screen.blit(count_text, (10, 10))
 
@@ -63,7 +58,7 @@ while running and count < len(states):
 
     soundGenerator.play_tone(states[count][1])
 
-    count += 1  # Increment the count
+    count += 1
     clock.tick(144)
 
 pygame.quit()
