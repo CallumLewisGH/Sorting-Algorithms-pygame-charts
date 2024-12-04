@@ -14,7 +14,7 @@ random.shuffle(scrambledList)
 soundGenerator = SoundGenerator()
 
 sorts = Sorts()
-states = sorts.SelectionSort(scrambledList) #Replace with the desired sort. Any sort can be added to sortingalgorithms.py class sorts as long as it returns the correct information
+states = sorts.BubbleSort(scrambledList) #Replace with the desired sort. Any sort can be added to sortingalgorithms.py class sorts as long as it returns the correct information
 
 pygame.init()
 pygame.mixer.init(frequency=22050, size=-16, channels=1)
@@ -42,7 +42,7 @@ def draw_bars(values):
         y = HEIGHT - value
         pygame.draw.rect(screen, BAR_COLOR, (x + (WIDTH/100 * 2), y, BAR_WIDTH, value))
 
-    count_text = font.render(f'Operations: {count}', True, TEXT_COLOR)
+    count_text = font.render(f'State changes: {count}', True, TEXT_COLOR)
     screen.blit(count_text, (10, 10))
 
     pygame.display.flip()
@@ -59,7 +59,7 @@ while running and count < len(states):
     soundGenerator.play_tone(states[count][1])
 
     count += 1
-    clock.tick(144)
+    clock.tick(30)
 
 pygame.quit()
 sys.exit()

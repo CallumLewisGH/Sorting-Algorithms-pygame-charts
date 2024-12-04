@@ -28,10 +28,10 @@ class Sorts:
                 while j >= 0 and key < data[j]:
                     data[j + 1] = data[j]
                     j -= 1
-                    states.append([data.copy(), j * (i + 1)])
+                    states.append([data.copy(), j])
                 data[j + 1] = key
                 if j >= 0:
-                    states.append([data.copy(), (j + 1) * (i + 1)])
+                    states.append([data.copy(), j + 1])
 
         insertion_sort()
         return states
@@ -48,7 +48,8 @@ class Sorts:
                         min_idx = j
                 if min_idx != i:
                     data[i], data[min_idx] = data[min_idx], data[i]
-                    states.append([data.copy(), j * (i + 1)])
+                    states.append([data.copy(), i])
+
         selection_sort()
         return states
 
@@ -70,7 +71,7 @@ class Sorts:
                     data[i], data[j] = data[j], data[i]
                     states.append([data.copy(), i])
             data[i + 1], data[high] = data[high], data[i + 1]
-            states.append([data.copy(), j * (i + 1)])
+            states.append([data.copy(), i + 1])
             return i + 1
 
         quick_sort(0, len(data) - 1)
@@ -97,19 +98,18 @@ class Sorts:
                         arr[k] = right_half[j]
                         j += 1
                     k += 1
-                    states.append([arr.copy(), j * (i + 1)])
-
+                    states.append([arr.copy(), k])
                 while i < len(left_half):
                     arr[k] = left_half[i]
                     i += 1
                     k += 1
-                    states.append([arr.copy(), j * (i + 1)])
+                    states.append([arr.copy(), k])
 
                 while j < len(right_half):
                     arr[k] = right_half[j]
                     j += 1
                     k += 1
-                    states.append([arr.copy(), j * (i + 1)])
+                    states.append([arr.copy(), k])
 
         merge_sort(data)
         return states
